@@ -36,8 +36,8 @@ public class ComponentUtils {
         return result;
     }
 
-    public static TextField createIntegerInputField() {
-        TextField result = new TextField("" + 0);
+    public static TextField createIntegerInputField(int initialValue) {
+        TextField result = new TextField("" + initialValue);
         result.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!StringUtils.isInteger(newValue) && !newValue.isEmpty())
                 result.setText(oldValue == null || oldValue.isEmpty() ? "0" : oldValue);

@@ -26,14 +26,17 @@ public class FlipTracker {
     private Settings settings = new Settings();
 
     private Runnable updateFlips = () -> ui.updateFlips();
+    private Runnable save = FileManager::save;
 
     FlipTracker() {
         instance = this;
         ui = new MainUI();
         FileManager.load();
         Thread uiThread = new Thread(() -> {
+            int loops = 0;
             while (running) {
-                if (needsFlipsUpdate) {
+                if (needsFlipsUpdate || loops++ > 600) {
+                    loops = 0;
                     Platform.runLater(updateFlips);
                     needsFlipsUpdate = false;
                 }
@@ -45,6 +48,17 @@ public class FlipTracker {
             }
         });
         uiThread.start();
+        Thread savingThread = new Thread(() -> {
+            while (running) {
+                try {
+                    sleep(60000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(save);
+            }
+        });
+        savingThread.start();
     }
 
     MainUI getUI() {

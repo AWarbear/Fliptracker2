@@ -49,6 +49,6 @@ public class FlipManager implements Serializable {
     }
 
     public double getProfits() {
-        return flips.stream().filter(flip -> flip.getBuyPrice() != 0 && flip.getSellPrice() != 0).mapToDouble(Flip::getProfit).reduce(0.0, (a, b) -> a + b);
+        return flips.stream().filter(Flip::isCompleted).mapToDouble(Flip::getProfit).reduce(0.0, (a, b) -> a + b);
     }
 }

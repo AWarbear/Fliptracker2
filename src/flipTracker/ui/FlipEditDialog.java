@@ -44,15 +44,17 @@ public class FlipEditDialog extends Stage {
             AnchorPane.setRightAnchor(rootContainer, 5.0);
 
             SearchField nameField = new SearchField(flip.getItemName(), new ArrayList<>(FlipTracker.instance.getProfile().getLimits().keySet()));
+            TextField amountField = ComponentUtils.createIntegerInputField(flip.getAmount());
             TextField buyPriceField = ComponentUtils.createDecimalInputField(flip.getBuyPrice());
             TextField sellPriceField = ComponentUtils.createDecimalInputField(flip.getSellPrice());
-            TextField timeSinceField = ComponentUtils.createIntegerInputField();
+            TextField timeSinceField = ComponentUtils.createIntegerInputField(0);
 
             Label itemName = new Label("Item:");
             ComponentUtils.setAnchors(itemName, 5, -1, 5, -1);
             ComponentUtils.setAnchors(nameField, 5, -1, 45, 5);
             getChildren().addAll(itemName, nameField);
 
+            createRow(container, "Amount: ", amountField);
             createRow(container, "Buy price: ", buyPriceField);
             createRow(container, "Sell price: ", sellPriceField);
             createRow(container, "Time since edited: ", timeSinceField);
@@ -68,7 +70,7 @@ public class FlipEditDialog extends Stage {
 
             //functionality
             completeButton.setOnAction(e -> {
-                flip.updateData(nameField.getText(), Double.valueOf(buyPriceField.getText()), Double.valueOf(sellPriceField.getText()), Long.valueOf(timeSinceField.getText()));
+                flip.updateData(nameField.getText(), Integer.valueOf(amountField.getText()), Double.valueOf(buyPriceField.getText()), Double.valueOf(sellPriceField.getText()), Long.valueOf(timeSinceField.getText()));
                 if (!FlipTracker.instance.getFlipManager().containsFlip(flip))
                     FlipTracker.instance.getFlipManager().addFlip(flip);
                 FlipTracker.instance.refresh();

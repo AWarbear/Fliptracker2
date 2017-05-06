@@ -18,13 +18,16 @@ public class Flip implements Serializable {
     private double buyPrice;
     private double sellPrice;
 
+    private int amount = 1;
+
     private long lastUpdatedTime;
     private long buyCompletedTime;
     private long sellCompletedTime;
 
     private boolean completed;
 
-    public void updateData(String name, double buyPrice, double sellPrice, long offset) {
+    public void updateData(String name,int amount, double buyPrice, double sellPrice, long offset) {
+        this.amount = amount;
         this.itemName = name;
         if (this.sellPrice != sellPrice && buyCompletedTime == 0)
             buyCompletedTime = System.currentTimeMillis();
@@ -78,6 +81,10 @@ public class Flip implements Serializable {
     }
 
     double getProfit() {
-        return sellPrice - buyPrice;
+        return (sellPrice - buyPrice)*amount;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

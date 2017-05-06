@@ -36,7 +36,7 @@ public class FlipPanel extends AnchorPane {
 
         //item data
         VBox geInfo = new VBox();
-        Label itemName = new Label(flip.getItemName());
+        Label itemName = new Label(flip.getItemName() + " X"+flip.getAmount() );
         itemName.getStyleClass().add("title");
         Label buyInfo = new Label(flip.getBuyInfo());
         Label sellInfo = new Label(flip.getSellInfo());

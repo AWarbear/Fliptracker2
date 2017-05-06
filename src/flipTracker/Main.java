@@ -17,7 +17,7 @@ public class Main extends Application {
      */
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image("/images/Money-icon256.png"));
-        String version = "V.17.5.5";
+        String version = "V.17.5.6";
         primaryStage.setTitle("FlipTracker " + version);
         FlipTracker flipTracker = new FlipTracker();
         primaryStage.setScene(new Scene(flipTracker.getUI(), 270, 400));
