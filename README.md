@@ -1,2 +1,2 @@
-# Fliptracker2
+# Fliptracker 2
 A lightweight and simple program to track your runescape flips
