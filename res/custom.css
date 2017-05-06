@@ -1,0 +1,17 @@
+
+.flipPanel{
+-fx-font: 9pt "SansSerif";
+}
+
+.flipPanel .title{
+-fx-font: bold 10pt "SansSerif";
+}
+
+.footer{
+-fx-border-color: #A5A5A5;
+}
+
+.tracker-tab .list-view {
+-fx-background-color: none;
+}
+
